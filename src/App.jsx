@@ -42,15 +42,38 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  // Function: Filter Todo
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true;
+  });
+
   return (
     <div className="app-container">
       <header className="app-header">
         <h1 className="app-title">やることリスト</h1>
+        <div className="filter-tabs">
+          <button
+            className={filter === 'all' ? 'active' : ''}
+            onClick={() => setFilter('all')}>すべて
+          </button>
+
+          <button
+            className={filter === 'active' ? 'active' : ''}
+            onClick={() => setFilter('active')}>未完了
+          </button>
+
+          <button
+            className={filter === 'completed' ? 'active' : ''}
+            onClick={() => setFilter('completed')}>完了
+          </button>
+        </div>
       </header>
 
       <main className="app-content">
         <TodoList
-          items={todos}
+          items={filteredTodos}
           onToggle={toggleTodo}
           onRemove={removeTodo}
         />

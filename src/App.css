@@ -116,3 +116,33 @@ ul {
     text-align: center;
     margin-bottom: 10px;
 }
+
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 5px;
+}
+
+.filter-tabs button {
+    background: none;
+    border: 1px solid transparent;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text-gray);
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.filter-tabs button.active {
+    background-color: var(--primary-yellow);
+    /* #FFD600 */
+    color: var(--text-dark);
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(255, 214, 0, 0.3);
+}
+
+.filter-tabs button:hover:not(.active) {
+    background-color: #f0f0f0;
+}
