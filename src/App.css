@@ -1,3 +1,6 @@
+/* ==========================================================================
+   VARIABLES & GLOBAL STYLES (Cấu hình chung)
+   ========================================================================== */
 :root {
     --primary-yellow: #FFD600;
     --action-teal: #00BFA5;
@@ -13,6 +16,9 @@
     padding: 0;
 }
 
+/* ==========================================================================
+   LAYOUT STRUCTURE (Cấu trúc khung của App)
+   ========================================================================== */
 .app-container {
     min-height: 100vh;
     display: flex;
@@ -20,6 +26,7 @@
     font-family: -apple-system, sans-serif;
 }
 
+/* --- Phần Header chứa Title và Filter tabs --- */
 .app-header {
     padding: 20px 0;
     border-bottom: 1px solid var(--border-color);
@@ -33,6 +40,7 @@
     margin-bottom: 10px;
 }
 
+/* --- Vùng chứa danh sách Todo (Phần thân giữa) --- */
 .app-content {
     flex: 1;
     overflow-y: auto;
@@ -43,6 +51,9 @@ ul {
     list-style: none;
 }
 
+/* ==========================================================================
+   TODO ITEM UI (Giao diện từng dòng công việc)
+   ========================================================================== */
 .todo-item {
     display: flex;
     align-items: center;
@@ -51,6 +62,7 @@ ul {
     background: white;
 }
 
+/* --- Checkbox hình tròn tự chế --- */
 .custom-checkbox {
     width: 22px;
     height: 22px;
@@ -70,17 +82,100 @@ ul {
     color: white;
 }
 
+/* --- Text nội dung công việc --- */
 .todo-text {
     flex: 1;
     font-size: 16px;
     color: var(--text-dark);
 }
 
+/* --- Container bọc text và các nút Edit/Delete --- */
+.todo-item-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+/* --- Các nút chức năng trong từng Item (Edit, Save, Delete) --- */
+.todo-item button {
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: inherit;
+    outline: none;
+}
+
+/* Nút Edit & Save màu vàng */
+.todo-item .edit-btn,
+.todo-item .save-btn {
+    background-color: #ffd700;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.todo-item .edit-btn,
+.todo-item .save-btn {
+    background-color: #ffc800;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút xóa (✕) */
+.todo-item .delete-btn {
+    background-color: transparent;
+    color: #888;
+    padding: 2px 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   FILTER TABS (Các nút lọc: Tất cả, Hoàn thành...)
+   ========================================================================== */
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 5px;
+}
+
+.filter-tabs button {
+    background: none;
+    border: 1px solid transparent;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text-gray);
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+/* Style riêng cho nút đang được chọn */
+.filter-tabs button.active {
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(255, 214, 0, 0.3);
+}
+
+/* ==========================================================================
+   FOOTER & INPUT AREA (Khu vực nhập liệu phía dưới)
+   ========================================================================== */
 .app-footer-area {
     padding: 20px;
     background: var(--bg-light);
 }
 
+/* --- Dòng chữ thống kê số lượng (項目が残っています) --- */
+.todo-footer {
+    font-size: 12px;
+    color: var(--text-gray);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* --- Khung bọc ô Input nhập mới --- */
 .input-wrapper {
     max-width: 800px;
     margin: 0 auto;
@@ -101,6 +196,7 @@ ul {
     background: transparent;
 }
 
+/* Nút gửi (➤) */
 .send-btn {
     background: none;
     border: none;
@@ -108,83 +204,4 @@ ul {
     font-size: 24px;
     cursor: pointer;
     padding-left: 10px;
-}
-
-.todo-footer {
-    font-size: 12px;
-    color: var(--text-gray);
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.filter-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0 5px;
-}
-
-.filter-tabs button {
-    background: none;
-    border: 1px solid transparent;
-    padding: 6px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    color: var(--text-gray);
-    font-size: 13px;
-    transition: all 0.2s ease;
-}
-
-.filter-tabs button.active {
-    background-color: var(--primary-yellow);
-    /* #FFD600 */
-    color: var(--text-dark);
-    font-weight: 600;
-    box-shadow: 0 2px 5px rgba(255, 214, 0, 0.3);
-}
-
-.filter-tabs button:hover:not(.active) {
-    background-color: #f0f0f0;
-}
-
-.todo-item button {
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    outline: none;
-}
-
-.todo-item .edit-btn,
-.todo-item .save-btn {
-    background-color: #ffd700;
-    color: white;
-    padding: 4px 8px;
-    font-size: 12px;
-    margin-right: 5px;
-}
-
-.todo-item .edit-btn:hover,
-.todo-item .save-btn:hover {
-    background-color: #ffc800;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.todo-item .delete-btn {
-    background-color: transparent;
-    color: #888;
-    padding: 2px 6px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.todo-item .delete-btn:hover {
-    color: #ff4d4f;
-}
-
-.todo-item-content {
-    display: flex;
-    align-items: center;
-    flex: 1;
 }

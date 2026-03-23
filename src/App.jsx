@@ -1,6 +1,7 @@
 // Assignment requirement: 
 // • Dùng **keys** ổn định (ví dụ: id sinh từ timestamp hoặc counter). 
 // • State đặt ở component cha (App) và **truyền handler xuống** (lifting state up).
+// • Storage
 
 import { useState, useEffect } from 'react';
 import TodoInput from './components/TodoInput';
@@ -9,8 +10,6 @@ import TodoFooter from './components/TodoFooter';
 import './App.css';
 
 function App() {
-  // https://react.dev/learn/state-a-components-memory
-  // https://react.dev/learn/updating-arrays-in-state
   // Function: LocalStorage
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem('todos');
@@ -31,11 +30,9 @@ function App() {
   }, [todos]);
 
   const leftCount = todos.filter(todo => !todo.completed).length;
-
   const [filter, setFilter] = useState('all');
 
   // Function: Add new ToDo
-  // https://react.dev/learn/updating-arrays-in-state#adding-to-an-array
   const addTodo = (text) => {
     const newTodo = {
       id: Date.now(),
@@ -47,7 +44,6 @@ function App() {
   };
 
   // Function: Completed ToDo
-  // https://react.dev/learn/updating-arrays-in-state#transforming-an-array
   const toggleTodo = (id) => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -55,7 +51,6 @@ function App() {
   };
 
   // Function: Remove ToDo
-  // Document: https://react.dev/learn/updating-arrays-in-state#removing-from-an-array
   const removeTodo = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
@@ -72,6 +67,7 @@ function App() {
     setTodos(prev => prev.map(t => t.id === id ? { ...t, isEditing: true } : t));
   };
 
+  // Function: Edit Todo
   const saveEdit = (id, newText) => {
     const value = newText.trim();
     if (!value) return;
@@ -110,7 +106,6 @@ function App() {
         />
       </main>
 
-      {/* https://react.dev/learn/conditional-rendering */}
       <footer className="app-footer-area">
         {todos.length > 0 && <TodoFooter leftCount={leftCount} />}
         <TodoInput addTodo={addTodo} />
