@@ -3,7 +3,7 @@
 
 import TodoItem from './TodoItem';
 
-export default function TodoList({ items, onToggle, onRemove }) {
+export default function TodoList({ items, onToggle, onRemove, onStartEdit, onSaveEdit }) {
     // https://react.dev/learn/conditional-rendering
     if (items.length === 0) {
         return <p>現在, 予定はありません</p>;
@@ -18,6 +18,8 @@ export default function TodoList({ items, onToggle, onRemove }) {
                     item={it}
                     onToggle={onToggle}
                     onRemove={onRemove}
+                    onStartEdit={onStartEdit} // Function: Edit Todo
+                    onSaveEdit={onSaveEdit} // Function: Edit Todo
                 />
             ))}
         </ul>

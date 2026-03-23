@@ -146,3 +146,45 @@ ul {
 .filter-tabs button:hover:not(.active) {
     background-color: #f0f0f0;
 }
+
+.todo-item button {
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    outline: none;
+}
+
+.todo-item .edit-btn,
+.todo-item .save-btn {
+    background-color: #ffd700;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.todo-item .edit-btn:hover,
+.todo-item .save-btn:hover {
+    background-color: #ffc800;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-item .delete-btn {
+    background-color: transparent;
+    color: #888;
+    padding: 2px 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.todo-item .delete-btn:hover {
+    color: #ff4d4f;
+}
+
+.todo-item-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}

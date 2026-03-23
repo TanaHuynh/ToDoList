@@ -23,7 +23,8 @@ function App() {
     const newTodo = {
       id: Date.now(),
       text: text,
-      completed: false
+      completed: false,
+      isEditing: false
     };
     setTodos([...todos, newTodo]);
   };
@@ -48,6 +49,17 @@ function App() {
     if (filter === 'completed') return todo.completed;
     return true;
   });
+
+  // Function: Edit Todo
+  const startEdit = (id) => {
+    setTodos(prev => prev.map(t => t.id === id ? { ...t, isEditing: true } : t));
+  };
+
+  const saveEdit = (id, newText) => {
+    const value = newText.trim();
+    if (!value) return;
+    setTodos(prev => prev.map(t => t.id === id ? { ...t, text: value, isEditing: false } : t));
+  };
 
   return (
     <div className="app-container">
@@ -76,6 +88,8 @@ function App() {
           items={filteredTodos}
           onToggle={toggleTodo}
           onRemove={removeTodo}
+          onStartEdit={startEdit} // Function: Edit Todo
+          onSaveEdit={saveEdit}   // Function: Edit Todo
         />
       </main>
 
