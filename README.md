@@ -1,16 +1,57 @@
-# React + Vite
+# やることリスト (Todo List)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**ReactJS**で構築されたミニマルなタスク管理（Todoリスト）アプリです。パフォーマンスとフラットデザインによるユーザーエクスペリエンスに重点を置いています。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 機能 (Features)
 
-## React Compiler
+* **タスク追加:** 内容を入力して、すばやくリストに追加できます。
+* **完了ステータス:** 円形のチェックボックスで、タスクの完了をマークできます。
+* **インライン編集:** ページを移動することなく、その場でタスクの内容を変更できます。
+* **フィルタリング機能:**
+    * `すべて` (All)
+    * `未完了` (Active)
+    * `完了` (Completed)
+* **データの永続化:** **LocalStorage**を統合しているため、ページの再読み込みやブラウザを閉じてもデータが保持されます。
+* **ミニマルなUI:** ホバーエフェクトを完全に取り除き、静寂さと動作の速さに集中したデザインです。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 使用技術 (Technologies)
 
-## Expanding the ESLint configuration
+* **ReactJS** (Hooks: `useState`, `useEffect`)
+* **CSS3** (Custom variables & Flexbox)
+* **LocalStorage API**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## インストール方法 (Installation)
+
+ローカル環境でプロジェクトを実行するには、以下の手順に従ってください。
+
+1.  **プロジェクトをクローンする:**
+    ```bash
+    git clone [https://github.com/TanaHuynh/ToDoList.git](https://github.com/TanaHuynh/ToDoList.git)
+    ```
+
+2.  **依存関係をインストールする:**
+    ```bash
+    cd ToDoList
+    npm install
+    ```
+
+3.  **アプリケーションを起動する:**
+    ```bash
+    npm run dev
+    ```
+    *※ Viteを使用している場合、通常 `http://localhost:5173` で起動します。*
+
+## ディレクトリ構成 (Project Structure)
+
+```text
+src/
+ ┣ components/
+ ┃ ┣ TodoFooter.jsx   # 残りのタスク数を表示
+ ┃ ┣ TodoInput.jsx    # 新規タスク入力フォーム
+ ┃ ┣ TodoItem.jsx     # 各タスクのロジック (表示/編集モード)
+ ┃ ┗ TodoList.jsx     # タスクリストのレンダリング
+ ┣ App.jsx            # メインロジック & 状態管理・LocalStorage管理
+ ┣ App.css            # アプリケーション全体のスタイル
+ ┗ main.jsx           # Reactのエンジリポイント
