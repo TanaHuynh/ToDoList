@@ -2,7 +2,7 @@
 // • Dùng **keys** ổn định (ví dụ: id sinh từ timestamp hoặc counter). 
 // • State đặt ở component cha (App) và **truyền handler xuống** (lifting state up).
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
@@ -11,7 +11,24 @@ import './App.css';
 function App() {
   // https://react.dev/learn/state-a-components-memory
   // https://react.dev/learn/updating-arrays-in-state
-  const [todos, setTodos] = useState([]);
+  // Function: LocalStorage
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem('todos');
+    if (savedTodos) {
+      try {
+        return JSON.parse(savedTodos);
+      } catch (error) {
+        console.error("JSONパースエラー:", error);
+        return [];
+      }
+    }
+    return [];
+  });
+
+  // Function: LocalStorage
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const leftCount = todos.filter(todo => !todo.completed).length;
 
